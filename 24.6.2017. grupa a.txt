@@ -1,0 +1,39 @@
+﻿Data su dva prirodna broja X i Y iz intervala od 10 do 5000. Poštujući sve faze procesa programiranja, kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) čija je suma cifara djeljiva sa brojem koji se dobije u obrnutom poretku tih cifara. U rješenju koristiti najmanje jednu funkciju.
+Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu, 441, djeljiv sa 9. 
+
+
+#include <iostream>
+using namespace std;
+
+int obrnibroj (int broj)
+{
+	int novibr = 0, ostatak;
+	while (broj > 0)
+	{
+		ostatak = broj % 10;
+		novibr = novibr * 10 + ostatak;
+		broj /= 10;
+	}
+	return novibr;
+}
+int sumacifri(int broj)
+{
+	int suma = 0;
+	while (broj > 0)
+	{
+		suma += broj % 10;
+		broj /= 10;
+	}
+	return suma;
+}
+int main()
+{
+	
+	for (int i = 10; i <= 5000; i++)
+	{
+		if (obrnibroj(i) % sumacifri(i) == 0)
+			cout << i << endl;
+	}
+	system("pause");
+	return 0;
+}

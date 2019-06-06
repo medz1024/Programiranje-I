@@ -1,0 +1,115 @@
+﻿Zadatak 1:
+Poštujući sve faze procesa programiranje, napisati program koji izračunava sumu svih brojeva u interval od 2 do n  koji su stepeni broja 2. Granična vrijednost n se unosi na početku glavnog programa, pri čemu je potrebno voditi računa da se podrži što veća granična vrijednost. Kreirati pomoćnu funkciju DaLiJeStepen2 za provjeru da li je proslijeđeni broj stepen broja 2 (stepeni broja 2 su: 2, 4, 8, 16, 32…). Izračun i ispis sume uraditi u glavnom programu
+
+
+#include <iostream>
+using namespace std;
+
+bool jestepen(int broj)
+{
+	if (broj % 2 != 0)
+		return false;
+	while (broj != 1)
+	{
+		if (broj % 2 != 0)
+			return false;
+		broj /= 2;
+	}
+	return true;
+}
+int main()
+{
+	long int broj;
+	int suma = 0;
+	cout << "Unesite cijeli broj" << endl;
+	cin >> broj;
+	for (int i = 2; i <= broj; i++)
+	{
+		if (jestepen(i))
+			suma += i;
+	}
+	cout << "Suma je: " << suma << endl;
+
+	system("pause");
+	return 0;
+}
+
+Napisati program koji učitava dva pozitivna cijela broja i ispisuje uniju cifara učitanih brojeva. Cifre treba ispisati sortirane po veličini od najmanje ka najvećoj. Svaku cifru ispisati samo jedanput.
+
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int duzinaBroja(int broj)
+{
+	int brojac = 0;
+	while (broj)
+	{
+		broj /= 10;
+		brojac++;
+	}
+
+	return brojac;
+}
+
+void sortiraj(int niz[], int duzina)
+{
+	for (int i = 0; i < duzina; i++)
+	{
+		for (int j = i + 1; j < duzina; j++)
+		{
+			if (niz[i] > niz[j])
+			{
+				int temp = niz[i];
+				niz[i] = niz[j];
+				niz[j] = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+	int broj1, broj2;
+	int noviniz[10], novaduzina;
+	do
+	{
+		cout << "Unesite brojeve: ";
+		cin >> broj1 >> broj2;
+	} while (broj1 <= 0 || broj2<=0);
+
+	int niz1[10];
+	int duzina1 = duzinaBroja(broj1);
+	for (int i = 0; i < duzina1; i++)
+	{
+			niz1[i] = broj1 % 10;
+		broj1 /= 10;
+	}
+
+	int niz2[10];
+	int duzina2 = duzinaBroja(broj2);
+	for (int i = 0; i < duzina2; i++)
+	{
+		niz2[i] = broj2 % 10;
+		broj2 /= 10;
+	}
+
+	sortiraj(niz1, duzina1);
+	sortiraj(niz2, duzina2);
+
+	cout << "Broj sa sortiranim ciframa: " << endl;
+
+	for (int i = 0; i < duzina1; i++)
+	{
+		for (int j = 0; j < duzina2; j++)
+		{
+			if (niz1[i] == niz2[j])
+				cout << setw(4) << niz1[i];
+		}
+	}
+
+	cout << endl;
+	system("pause");
+	return 0;
+}
