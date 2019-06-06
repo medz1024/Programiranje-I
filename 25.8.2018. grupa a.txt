@@ -1,7 +1,7 @@
-﻿Zadatak 01
+/* Zadatak 01
 Napisati program koji učitava prirodan broj n. Program treba ispisati najmanji prirodan broj m,
  veći ili jednak n, koji je potencija nekog prirodnog broja, tj. m = k ^ l, gdje su k i l prirodni 
-brojevi >= 2.
+brojevi >= 2. */
 
 #include <iostream>
 #include <cmath>
@@ -44,7 +44,7 @@ int main()
     return 0;
 }
 
-Zadatak 02
+/* Zadatak 02
 Napisati program koji će omogućiti korisniku unos broja n (uz uslov 10 <= n <= 1000).
  Zatim simulirati unos n slučajnih vrijednosti. Simuliranje unosa ostvariti funkcijom rand() % 1000 + 1.
  Izračunati statističke podatke u kojem procentu se od n generisanih slučajnih vrijednosti pojavljuje
@@ -53,7 +53,7 @@ Napisati program koji će omogućiti korisniku unos broja n (uz uslov 10 <= n <=
 Npr. Ako je generisano 10 brojeva (n = 10): 5,7,4,13,17,20,25,23,30,45, u ovom uzorku od 
 10 brojeva postoji 5 prostih brojeva pa je procenat prostih brojeva u ovom slučaju 50%.
 
-Napomena: Po želji kreirati dodatne funkcije da se olakša rješavanje zadatka.
+Napomena: Po želji kreirati dodatne funkcije da se olakša rješavanje zadatka. */
 
 #include <iostream>
 #include <ctime>
@@ -103,14 +103,14 @@ int main()
     return 0;
 }
 
-Zadatak 03
+/* Zadatak 03
 Napisati program koji će omogućiti unos cijelih brojeva sa neparnih brojem cifara (minimalno trocifrenih)
  u jednodimenzionalni niz od 20 elemenata i jedan karakter u main funkciji. Zatim napraviti funkciju
  koja će primati kao argumente taj niz i karakter. Funkcija treba da na osnovu karaktera izvrši 
 sortiranje niza uzlazno ili silazno po srednjoj cifri i to ako je primljeni karakter "U"
  sortiranje treba biti uzlazno, a ako je primljen karakter "S" onda sortiranje treba biti silazno. 
 Ukoliko karakter nije jedan od navedenih, treba se ispisati poruka "Sortiranje nedefinisano". 
-Obavezno voditi računa o optimizaciji code-a koja posebno utiče na broj bodova u ovom zadatku.
+Obavezno voditi računa o optimizaciji code-a koja posebno utiče na broj bodova u ovom zadatku. */
 
 #include <iostream>
 #include <cmath>
@@ -215,7 +215,7 @@ int main()
     return 0;
 }
 
-Zadatak 04
+/* Zadatak 04
 Dat je 2D niz koji simulira šahovsku tablu. Omogućiti korisniku unos cjelobrojnih elemenata 2D
  niza tako da se u svako "crno" polje unese parni broj sa neparnim brojem cifara, a u "bijelo" 
 polje neparni broj sa parnim brojem cifara. Provjeriti da li je matrica simetrična po glavnoj 
@@ -242,7 +242,7 @@ B - Bijela
     | C60 | B61 | C62 | B63 | C64 | B65 | C66 | B67 |
     +-----+-----+-----+-----+-----+-----+-----+-----+
     | B70 | C71 | B72 | C73 | B74 | C75 | B76 | C77 |
-    +-----+-----+-----+-----+-----+-----+-----+-----+
+    +-----+-----+-----+-----+-----+-----+-----+-----+ */
 
 
 #include <iostream>
