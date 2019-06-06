@@ -1,5 +1,5 @@
-﻿Data su dva prirodna broja X i Y iz intervala od 10 do 5000. Poštujući sve faze procesa programiranja, kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) čija je suma cifara djeljiva sa brojem koji se dobije u obrnutom poretku tih cifara. U rješenju koristiti najmanje jednu funkciju.
-Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu, 441, djeljiv sa 9. 
+/* Data su dva prirodna broja X i Y iz intervala od 10 do 5000. Poštujući sve faze procesa programiranja, kreirati program koji će pronaći i ispisati sve brojeve od X do Y (uključujući granične vrijednosti) čija je suma cifara djeljiva sa brojem koji se dobije u obrnutom poretku tih cifara. U rješenju koristiti najmanje jednu funkciju.
+Npr. Za broj 144 vrijedi da mu je suma cifara 9 i da je broj koji se dobije nakon što se njegove cifre obrnu, 441, djeljiv sa 9. */
 
 
 #include <iostream>
