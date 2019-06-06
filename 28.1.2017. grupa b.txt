@@ -1,4 +1,4 @@
-﻿Zadatak 1:
+/* Zadatak 1:
 Poštujući sve faze programiranja napisati program kojim će se izračunati 20 uzastopnih vrijednosti brzine i prijeđenog puta objekta u slobodnom padu u razmaku od po 3 sec. Izračunate vrijednosti brzine i prijeđenog puta smjestiti u odvojene nizove od po 20 elemenata, te ispisati na ekranu uzastopno brzinu i prijeđeni put zajedno za svaki period od 3 sec. Obratiti pažnju da se koriste ispravni tipovi podataka. Za izračun brzine slobodnog pada te prijeđenog puta pri slobodnom padu koristiti zasebne funkcije.
 Formula za brzinu slobodnog pada je: v=g*t  //g=9.81
 Formula za prijeđeni put pri slobodnom padu je: s=(g/2)*pow(t,2)  //g=9.81
@@ -8,8 +8,8 @@ Situacija u 3-oj sekundi je:
 Situacija u 6-oj sekundi je:
      Brzina: 58.86 Prijeđeni put: 176.57
 Situacija u 9-oj sekundi je:
-     Brzina: 88.29 Prijeđeni put: 397.305
-Prijedlog rješenja:
+     Brzina: 88.29 Prijeđeni put: 397.305 */
+     
 #include "stdafx.h"
 #include <iostream>
 #include <math.h>
@@ -51,9 +51,10 @@ void putSlobPad(float duzine[])
 	duzine [i-1] = (g/2)*pow(float(i*3),2);
 	}
 }
-Zadatak 2:
+/* Zadatak 2:
 Svaki paran broj može se prikazati kao suma dvaju  prostih  brojeva  (tkzv.  Goldbachovo  pravilo). Razraditi logiku programa koji će najprije učitati dva prirodna broja n1 i n2. Ako je n1 > n2 zamijeniti n1 sa n2. Prikazati sve parne brojeve u intervalu n1 do n2 kao sumu dvaju prostih brojeva. U glavnom programu samo unijeti navedena dva prirodna broja i pozvati funkciju koja obavlja zadani posao.
-Prijedlog rješenja:
+Prijedlog rješenja: */
+
 #include<iostream>
 #include<iomanip>
 
@@ -104,10 +105,10 @@ bool prost(int broj)
 	return 1;
 }
 
-Zadatak 3:
+/* Zadatak 3:
 Napisati program koji računa koliko je dana proteklo između dva datuma u istoj godini. Pretpostavka je da će korisnik unijeti prvo manji (dan, mjesec i godinu), a zatim veći datum (dan, mjesec i godinu). Potrebno je da uneseni dani budu u rasponu od 1-31, mjeseci u rasponu od 1-12 i da su godine jednake. Ukoliko je bilo šta od navedenog narušeno za jedan od datuma, unos se ponavlja. Voditi računa i da unesena godina može biti prestupna (svaka godina koja je djeljiva sa 4, nije djeljiva sa 100 ili je djeljiva sa 400; npr. 1600. jeste prestupna, jer je djeljiva sa 400, 2017. nije prestupna jer ne ispunjava niti jedan od uslova).
 Pomoć: Za potrebe pronalaska broja dana u mjesecu koristiti sljedeći niz (sa eventualnom izmjenom za prestupnu godinu): int broj_dana[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-Prijedlog rješenja:
+Prijedlog rješenja: */
 #include<iostream>
 #include<iomanip>
 
@@ -163,7 +164,7 @@ int main()
 
 
 
-Zadatak 4:
+/* Zadatak 4:
 Deklarisati kvadratnu matricu cijelih brojeva proizvoljnih dimenzija sa parnim brojem redova, te implementirati sljedeće funkcije:
 •	Funkciju za unos i formiranje elemenata matrice prema sljedećem obrascu: elemente neparnih redova matrice (1., 3., 5. itd.) čine brojevi koje unosi korisnik programa; elementi parnih redova matrice se formiraju na osnovu elemenata iz prethodnog reda u istoj koloni matrice i to na način da je svaki novokreirani element matrice zapravo srednja cifra broja koji se u matrici nalazi iznad njega. Za pronalazak srednje cifre broja kreirati zasebnu funkciju srednja_cifra, te je pozvati u funkciji unos. Srednju cifru brojeva sa parnim brojem cifara formirati kao srednju vrijednost dvaju cifara u sredini, npr. broj 4213 ima dvije srednje cifre, te funkcija treba da kao srednju cifru vrati vrijednost aritmetičke sredine cifre 2 i 1 zaokružene na veću decimalnu, u konkretnom slučaju broj 2.
 •	Funkciju max_element koja pronalazi element sa najvećim brojem cifara. Kreirati pomoćnu funkciju broj_cifara koja vraća broj cifara broja proslijeđenog kao parametar.
@@ -177,7 +178,8 @@ Primjer matrice dimenzija 4x4 i očekivanih rezultata je dat ispod.
 3	1	2	9
 Element matrice sa najvećim broje cifara: 741232.
 
-Prijedlog rješenja:
+Prijedlog rješenja: */
+
 #include<iostream> 
 #include<cmath> 
 #include<iomanip> 
