@@ -1,5 +1,5 @@
-﻿Zadatak 1:
-Poštujući sve faze procesa programiranje, napisati program koji izračunava sumu svih brojeva u interval od 2 do n  koji su stepeni broja 2. Granična vrijednost n se unosi na početku glavnog programa, pri čemu je potrebno voditi računa da se podrži što veća granična vrijednost. Kreirati pomoćnu funkciju DaLiJeStepen2 za provjeru da li je proslijeđeni broj stepen broja 2 (stepeni broja 2 su: 2, 4, 8, 16, 32…). Izračun i ispis sume uraditi u glavnom programu
+/* Zadatak 1:
+Poštujući sve faze procesa programiranje, napisati program koji izračunava sumu svih brojeva u interval od 2 do n  koji su stepeni broja 2. Granična vrijednost n se unosi na početku glavnog programa, pri čemu je potrebno voditi računa da se podrži što veća granična vrijednost. Kreirati pomoćnu funkciju DaLiJeStepen2 za provjeru da li je proslijeđeni broj stepen broja 2 (stepeni broja 2 su: 2, 4, 8, 16, 32…). Izračun i ispis sume uraditi u glavnom programu */
 
 
 #include <iostream>
@@ -34,7 +34,7 @@ int main()
 	return 0;
 }
 
-Napisati program koji učitava dva pozitivna cijela broja i ispisuje uniju cifara učitanih brojeva. Cifre treba ispisati sortirane po veličini od najmanje ka najvećoj. Svaku cifru ispisati samo jedanput.
+/* Napisati program koji učitava dva pozitivna cijela broja i ispisuje uniju cifara učitanih brojeva. Cifre treba ispisati sortirane po veličini od najmanje ka najvećoj. Svaku cifru ispisati samo jedanput. */
 
 
 #include<iostream>
