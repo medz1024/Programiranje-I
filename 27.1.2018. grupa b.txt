@@ -1,0 +1,433 @@
+﻿Zadatak 01
+Napisati program koji će za uneseni prirodni broj n računati:
+
+S = [1/(n+1)] - [1/(n+2!)] + [1/(n+3!)] - [1/(n+4!)] + ... + (-1)^(n-1) * [1/(n+n!)] 10 < n <= 100
+
+Obavezno koristiti i ispravne tipove podataka i optimizirati kod.
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int faktorijal(int broj)
+{
+    int fakt = 1;
+    
+    for(int i = 1; i <= broj; i++)
+        fakt *= i;
+        
+    return fakt;
+}
+
+int main()
+{
+    double suma = 0;
+    int n;
+    
+    do
+    {
+        cout << "Unesite prirodan broj: " << endl;
+        cin >> n;
+        
+    }while(n <= 10 || n > 100);
+    
+    for(int i = 1; i <= n; i++)
+        suma = suma + pow(-1, i - 1) * i / (n + faktorijal(i));
+        
+    cout << suma << endl;
+    
+    
+    system("pause>0");
+    return 0;
+}
+
+Zadatak 02
+Napisati program koji će omogućiti korisniku unos dva minimalno trocifrena prirodna broja m i n (n > m, m > 100, n < 500). Zatim napraviti funkciju koja će vratiti aritmetičku sredinu svih srednjih cifara svih brojeva u rangu od m do n. Također ta funkcija treba ispisati najveću srednju cifru navedenog ranga.
+
+#include <iostream>
+
+using namespace std;
+
+int srednjaCifra(int broj)
+{
+    //svi brojevi ce biti trocifreni
+    broj /= 10;
+    return broj % 10;
+}
+
+double aritmeticka(int m, int n)
+{
+    int brojac = 0,
+        suma = 0,
+        max;
+        
+    for(int i = m; i < n; i++)
+    {
+        suma = suma + srednjaCifra(i);
+        brojac++;
+    }
+    
+    max = srednjaCifra(m);
+    for(int i = m + 1; i < n; i++)
+    {
+        if(max < srednjaCifra(i))
+            max = srednjaCifra(i);
+    }
+    
+    cout << "Najveca sredja cifra je: " << max << endl;
+    
+    return double(suma)/brojac;
+}
+
+int main()
+{
+    int m, n;
+    
+    do
+    {
+        cout << "Unesite broj m i n, tako da je " << endl
+             << "n > m" << endl
+             << "m > 100" << endl
+             << "n < 500" << endl;
+        cin >> m >> n;
+        
+    }while(n < m || m < 100 || n > 500 || n < 100);
+    
+    cout << "Aritmeticka sredina srednjih cifara: " << aritmeticka(m, n) << endl;
+    
+    system("pause>0");
+    return 0;
+    
+}
+
+Zadatak 03
+U main funkciji kreirati niz veličine 200 (char recenica[200]) sa sljedećim inicijaliziranim vrijednostima "Most u Mostaru je Stari most a pored njega je jos jedan most". Također, dat je niz karaktera veličine 4 (char rijec[4]) koji je inicijaliziran vrijednostima "most". (Nije potrebno praviti funkciju za unos. koja će primiti pomenute nizove kao argumente te pronaći i prebrojati koliko puta se ponavlja sekvenca karaktera iz niza rijec u nizu recenica. Voditi računa da se riječju smatra bilo koji niz karaktera odvojen spaceom sa obje strane. Program u main treba ispisati broj pronađenih riječi.
+
+#include <iostream>
+
+using namespace std;
+
+int duzinaStringa(char niz[])
+{
+    int duzina = 0;
+    
+    while(niz[duzina] != '\0')
+        duzina++;
+    
+    return duzina;
+}
+
+int ponavljanje(char recenica[], char rijec[])
+{
+    int dRecenice = duzinaStringa(recenica);
+    int dRijeci = duzinaStringa(rijec);
+    
+    int brojac = 0, 
+        brojac_rijeci = 0,
+        j;
+    bool sekvenca = false;
+    
+    for(int i = 0; i < dRecenice; i++)
+    {
+        j = 0;
+        do
+        {
+            
+            if(!sekvenca)
+                brojac = 0;
+                
+            if((recenica[i] == rijec[j] ||
+                recenica[i] == rijec[j] - 32 ||
+                recenica[i] == rijec[j] + 32) &&
+                recenica[i] != '\0' && rijec[j] != '\0')
+            {
+               brojac++;
+               sekvenca = true;
+               i++; 
+            }
+            else
+                sekvenca = false;
+            
+
+            if(!sekvenca && brojac == dRijeci && (recenica[i] == ' ' || recenica[i] == '\0'))
+                brojac_rijeci++;
+            
+            j++;
+                
+        }while(j <= dRijeci);
+    }
+    
+    
+    return brojac_rijeci;
+}
+
+int main()
+{
+    char recenica[200] = {"Most u Mostaru je Stari most a pored njega je jos jedan most"};
+    char rijec[5] = {"most"};
+    
+    cout << rijec << " se ponavlja " << ponavljanje(recenica, rijec) << " put(a) u recenici '" << recenica << "'" << endl;
+    
+    system("pause>0");
+    return 0;
+}
+
+Zadatak 04
+Napisati program koji će omogučiti:
+
+Unos 2D niza od 10x10 elemanata vodeći računa da su svi elementi dvocifreni (ukoliko unos nekog elementa ne zadovoljava uslov, ponavljati unos tog elementa dok se ne zadovolji uslov); Koristiti funkciju unos
+Izvršiti transpoziciju niza tako što će se zamjeniti redovi i kolone - Koristiti funkciju transpose, a zatim na osnovu izmijenjenog 2D niza:
+Izračunati aritmetičku sredinu svih prostih brojeva ispod sporedne dijagonale - Koristiti dvije funkcije: aritmeticka i prost_broj (pozivati će se iz funkcije aritmeticka)
+Napisati funkciju simpatican koja će provjeriti da li su brojevi iznad sporedne dijagonale simpatični*.
+Obavezno koristiti navedene funkcije, a parametre i eventualne povratne vrijednosti definisati prema potrebi. U main() funkciji napisati testni program koji će omogućiti izvršenje svih funkcija navedenim redoslijedom.
+
+[a][a][a][a][a]        [a][b][c][d][e]
+[b][b][b][b][b]        [a][b][c][d][e]
+[c][c][c][c][c]  --->  [a][b][c][d][e]
+[d][d][d][d][d]        [a][b][c][d][e]
+[e][e][e][e][e]        [a][b][c][d][e]
+Pomoć: Broj je simpatičan ukoliko je zbir cifara njegovog kvadrata jednak kvadratu zbira 
+njegovih cifara. Broj 21 je simpatičan jer je s(441) = s(21) * s(21) pri čemu je s(n) zbir cifara prirodnog broja n.
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+const int d = 10;
+
+void unos(int niz[][d]);
+void transponuj(int niz[][d]);
+void aritmeticka(int niz[][d], double &avg_p, double &avg_np);
+void ispis(int niz[][d]);
+
+int main()
+{
+    int matrica[d][d];
+    double avg_p = 0, avg_np = 0;
+           
+    unos(matrica);
+    ispis(matrica);
+    transponuj(matrica);
+    
+    cout << endl;
+    ispis(matrica);
+    
+    aritmeticka(matrica, avg_p, avg_np);
+    
+    if(avg_p > avg_np)
+    {
+      cout << "Vecu aritmeticku sredinu imaju parni brojevi iznad glavne dijagonale i ona iznosi: " << avg_p << endl;
+    }
+    else if(avg_p < avg_np)
+	{
+      cout << "Vecu aritmeticku sredinu imaju neparni brojevi iznad sporedne dijagonale i ona iznosi: " << avg_np << endl;
+    }
+    else
+    {
+      cout << "Aritmeticke sredine su jednake i iznose: " << avg_p << endl;
+    }        
+    
+
+	system("pause>0");
+	return 0;
+    
+}
+
+void ispis(int niz[][d])
+{
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++) 
+            cout << setw(4) << niz[i][j];
+        cout << endl;
+    }
+}
+
+void aritmeticka(int niz[][d], double &avg_p, double &avg_np)
+{
+    int brojac_p = 0,
+        brojac_np = 0;
+        
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++)
+        {
+            //avg parnih iznad glavne dijagonale
+            if(i < j && niz[i][j] % 2 == 0)
+            {
+                avg_p = avg_p + niz[i][j];
+                brojac_p++;
+            }
+            
+            //avg neparnih iznad sporedne dijagonale
+            if(i + j < d - 1 && niz[i][j] % 2 == 1)
+            {
+                avg_np = avg_np + niz[i][j];
+                brojac_np++;
+            }
+        }
+    }
+    
+    avg_p = avg_p / brojac_p;
+    avg_np = avg_np / brojac_np;
+}
+
+void transponuj(int niz[][d])
+{
+    int novi_niz[d][d] = {};
+    
+    for(int i = 0; i < d; i++)
+        for(int j = 0; j < d; j++)
+            novi_niz[j][i] = niz[i][j];
+       
+    
+    for(int i = 0; i < d; i++)
+        for(int j = 0; j < d; j++)
+            niz[i][j] = novi_niz[i][j];
+}
+
+void unos(int niz[][d])
+{
+    cout << "Unesite niz: " << endl;
+    for(int i = 0; i < d; i++)
+        for(int j = 0; j < d; j++)
+            cin >> niz[i][j];
+}
+
+
+//drugi
+
+
+#include <iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+const int d = 3;
+void unos(int[][d]);
+void ispis(int[][d]);
+void transpose(int[][d]);
+bool prostbroj(int);
+double artimetickasredina(int[][d]);
+bool simpatican(int[][d]);
+int sumacifri(int[][d]);
+int sumacifrikvad(int);
+
+void main()
+{
+	int matrica[d][d];
+	unos(matrica);
+	cout << endl;
+	transpose(matrica);
+	cout << endl;
+	ispis(matrica);
+	cout << endl;
+	cout << "Arimeticka sredina ispod dijagonale: " << artimetickasredina(matrica) << endl;
+	cout << "Simpaticni" << simpatican(matrica) << endl;
+
+
+	system("pause");
+}
+void unos(int niz[][d])
+{
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+		{
+			cout << "Unesite [" << i << "] i [" << j << "] clan matricee" << endl;
+			do {
+				cin >> niz[i][j];
+				if (niz[i][j] < 10 || niz[i][j]>99)
+					cout << "Pogresan unos, unesi ponovo" << endl;
+			} while (niz[i][j] < 10 || niz[i][j]>99);
+			
+		}
+	}
+}
+void ispis(int niz[][d])
+{
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+			cout << setw(4) << niz[i][j];
+		cout << endl;
+	}
+}
+void transpose(int niz[][d])
+{ 
+	int noviniz[d][d] = {};
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+		{
+			noviniz[j][i] = niz[i][j];
+		}
+	}
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+		{
+			niz[i][j] = noviniz[j][i];
+		}
+	}
+return niz[d][d];
+}
+bool prostbroj(int broj)
+{
+	bool prost = true;
+	for (int i = 0; i <= broj / 2; i++)
+	{
+		if (broj%i == 0)
+			prost = false;
+	}
+	return prost;
+}
+double artimetickasredina(int niz[][d])
+{
+	int suma = 0, brojac=0;
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+		{
+			if (i + j > d-1 && prostbroj(niz[i][j])==true)
+			{
+				suma += niz[i][j];
+				brojac++;
+			}
+		}
+	}
+	return suma / brojac;
+}
+int sumacifri(int broj)
+{
+	int priv = broj / 10;
+	int priv2 = broj % 10;
+
+	return priv + priv2;
+}
+int sumacifrikvad(int broj)
+{
+	int sum = 0;
+	broj = pow(broj, 2);
+	while (broj != 0)
+	{
+		sum += broj % 10;
+		broj /= 10;
+	}
+	return sum;
+}
+bool simpatican(int niz[][d])
+{
+	bool simpa = false;
+	for (int i = 0; i < d; i++)
+	{
+		for (int j = 0; j < d; j++)
+		{
+			if (i+j<d-1 && sumacifri(i) == sumacifrikvad(i))
+				simpa = true;
+		}
+	}
+	return simpa;
+}

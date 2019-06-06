@@ -1,0 +1,233 @@
+﻿Zadatak 01
+Napisati program koji rješava sljedeći problem. Date su firma A, B i C sa godišnjim prihodima: A - prihod 10M eura B - prihod 7M eura C - prihod 5M eura sa sljedećim stabilnim fiksnim godišnjim rastom prihoda za koji pretpostavljamo da se neće mijenjati A - 2.05% B - 2.80% C - 4.30% Potrebno je pronaći koja firma će prva prestići firmu A u godišnjem prihodu i za koliko godina će se to desit. Također potrebno je ispisati koliko će sve tri firme imati godišnji prihod u toj godini.
+
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+    const double godRastPrihodaA = 2.05,
+                 godRastPrihodaB = 2.80,
+                 godRastPrihodaC = 4.30;
+   
+    double prihodA = 10,
+           prihodB = 7,
+           prihodC = 5;
+       
+    int i = 0;
+       
+   
+    while(prihodB < prihodA || prihodC < prihodA)
+    {
+        prihodA = prihodA + prihodA * godRastPrihodaA / 100;
+        prihodB = prihodB + prihodB * godRastPrihodaB / 100;
+        prihodC = prihodC + prihodC * godRastPrihodaC / 100;
+        i++;  
+    }
+   
+    if(prihodB > prihodC)
+        cout << "Firma B ce prva prestici firmu A za " << i << " godina" << endl;
+    else
+        cout << "Firma C ce prva prestici firmu A za " << i << " godina" << endl;
+       
+    cout << "Firma A nakon " << i << " godina: " << prihodA << " miliona" << endl;
+    cout << "Firma B nakon " << i << " godina: " << prihodB << " miliona" << endl;
+    cout << "Firma C nakon " << i << " godina: " << prihodC << " miliona" << endl;
+ 
+    system("pause>0");
+    return 0;
+}
+
+Zadatak 02
+Svaki paran broj se može prikazati kao suma dva prosta broja (tkz. Goldbachovo pravilo). Napisati program koji će najprije učitati dva prirodna broja n1 i n2 (n2 > n1). Zatim prikazati sve parne brojeve u intervalu od n1 do n2 kao sumu dva prosta broja. U glavnom programu samo unijeti navedena dva prirodna broja i pozvati funkciju koja obavlja zadani posao.
+
+#include <iostream>
+ 
+using namespace std;
+ 
+int prost(int x)
+{
+    for(int i = 2; i < x; i++)
+        if(x % i == 0)
+            return 0;
+   
+    return 1;
+}
+void goldbachov(int n1, int n2)
+{
+    int i, j;
+   
+    if(n1 % 2 != 0)
+        n1++;
+    do
+    {
+        //if(n1 == 2) i = 1;
+        //else i = 2;
+        for(n1 == 2 ? i = 1 : i = 2 ; i <= n1; i++)
+        {
+            for(n1 == 2 ? j = 1 : j = 2 ; j <= n1; j++)
+            {
+                if(prost(i) && prost(j))
+                {
+                    if(i + j == n1)
+                    {
+                      cout << i << " + " << j << " = " << n1 << endl;
+                      n1 += 2;
+                      break;
+                    }
+                }
+               
+            }
+            if(n1 >= n2) break;
+                
+        }
+       
+    }while(n1 < n2);
+   
+   
+}
+ 
+int main()
+{
+    int n1, n2;
+   
+    do
+    {
+        cout << "Unesite 2 broja: " << endl;
+        cin >> n1 >> n2;
+       
+    }while(n1 <= 0 || n2 <= 0);
+   
+    if(n1 > n2)
+    {
+        int temp = n2;
+        n2 = n1;
+        n1 = temp;
+    }
+   
+    goldbachov(n1, n2);
+ 
+    system("pause>0");
+    return 0;
+}
+
+
+Zadatak 03
+Napisati program koji će učitati niz od 50 integer vrijednosti. Napisati funkciju koja će provjeriti da li se u nizu nalazi sekvenca od minimalno 4 uzastopna broja. Funkcija treba da provjeri i prebroji koliko takvih sekvenci postoji u nizu i da ispise broj takvih sekvenci.
+
+Npr. 100, 322, 453, 454, 455, 456, 355, 235, 235, 236, 237, 238, 239, 111... 453, 454, 455, 456 - 1. Sekvenca 235, 236, 237, 238, 239 - 2. Sekvenca
+
+#include <iostream>
+ 
+using namespace std;
+
+int sekvencija(int niz[], int n)
+{
+    int brojacSekvence = 0;
+    for(int i = 0; i < n; i++)
+    {
+      int brojac = 1;
+           
+      while(i < n && niz[i] == niz[i + 1] - 1) brojac++, i++;
+       
+      if(brojac >= 4) brojacSekvence++;
+    }
+   
+    return brojacSekvence;
+}
+ 
+int main()
+{
+    const int n = 10;
+    int niz[n];
+   
+    for(int i = 0; i < n; i++)
+      cin >> niz[i];
+       
+    cout << sekvencija(niz, 50) << endl;
+ 
+    system("pause>0");
+    return 0;
+}
+
+Zadatak 04
+Napisati program koji će učitati cijeli broj n (1 <= n <= 10), (ukoliko unesena vrijednost nije unutar intervala, učitavanje treba ponavljati sve dok se ne unese ispravna vrijednost) i elemente matrice dimenzije n x n te ispisati da li je matrica centralno simetrična s obrzirom na središnji element. Ako jeste, program treba ispisati 1, ako nije ispisati 0,a ako je broj redova paran (pa nema središnjeg elementa) ispisati -1. Koristite posebne funkcije za unos elemenata i provjeru simetričnosti.
+
+Primjer centralno simetrične matrice:
+
+3	1	2
+5	4	5
+2	1	3
+
+
+1	4	5	8	7
+3	1	2	4	6
+7	5	3	5	7
+6	4	2	1	3
+7	8	5	4	1
+
+#include <iostream>
+#include <iomanip>
+ 
+using namespace std;
+ 
+void upis(int niz[][10], int dimenzija)
+{
+    for(int i = 0; i < dimenzija; i++)
+    {
+        for(int j = 0; j < dimenzija; j++)
+        {
+            cout << "Unesite ["<< i << "][" << j << "] element: ";
+            cin >> niz[i][j];
+        }
+    }
+}
+ 
+int provjera(int niz[][10], int dimenzija)
+{
+   
+    if(dimenzija % 2 == 0)
+        return -1;
+    else
+    {
+        for(int i = 0; i < dimenzija; i++)
+        {
+            for(int j = 0; j < dimenzija; j++)
+            {
+                if(niz[i][i] != niz[dimenzija-1-i][dimenzija-1-i])
+                    return 0;
+                if(i+j == dimenzija - 1 && niz[i][j] != niz[j][i])
+                    return 0;
+                if(niz[i][dimenzija/2] != niz[dimenzija-1-i][dimenzija/2])
+                    return 0;
+                if(niz[dimenzija/2][j] != niz[dimenzija/2][dimenzija-1-j])
+                    return 0;
+            }
+        }
+       
+        return 1;
+       
+    }
+}
+ 
+int main()
+{
+    int niz[10][10];
+    int dimenzija;
+   
+    do
+    {
+        cout << "Unesite broj elemenata: ";
+        cin >> dimenzija;
+       
+    }while(dimenzija < 1 || dimenzija > 10);
+   
+    upis(niz, dimenzija);
+    cout << endl;
+   
+    cout << provjera(niz, dimenzija) << endl;
+   
+    system("pause>0");
+    return 0;
+}
